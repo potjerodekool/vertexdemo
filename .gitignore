@@ -1,0 +1,11 @@
+.gitignore
+.gradle/
+.idea/sonarlint/issuestore/1/
+.idea/sonarlint/issuestore/5/
+.idea/sonarlint/issuestore/6/
+.idea/sonarlint/issuestore/b/
+.idea/sonarlint/issuestore/d/
+.idea/sonarlint/issuestore/f/9/
+.idea/workspace.xml
+.vertx/
+build/
