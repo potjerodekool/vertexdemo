@@ -1,0 +1,43 @@
+group 'org.platonos'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.yaml:snakeyaml:1.15"
+        classpath "gradle.plugin.org.liquibase:liquibase-gradle-plugin:1.2.4"
+        classpath group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '1.1.7'
+    }
+}
+
+apply plugin: "org.liquibase.gradle"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'io.vertx:vertx-web:3.4.1'
+    compile 'io.vertx:vertx-jdbc-client:3.4.1'
+    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '1.1.7'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+liquibase {
+    activities {
+        main {
+            changeLogFile 'src/liquibase/master.yaml'
+            url 'jdbc:mariadb://localhost:3306/test'
+            username 'root'
+            password ''
+        }
+    }
+}
